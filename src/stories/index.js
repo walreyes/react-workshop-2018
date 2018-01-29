@@ -24,7 +24,7 @@ storiesOf('Button', module)
     <Button onClick={action('clicked')}>😀 😎 👍 💯</Button>
   ));
 
-storiesOf('Sidebar', module).add('Simple', () => <Sidebar />);
+storiesOf('Sidebar', module).add('Simple', () => <Sidebar mailsCount={10} />);
 
 storiesOf('Search Box', module)
   .add('simple', () => <SearchBox />)
@@ -99,6 +99,19 @@ storiesOf('Mail Item', module)
         subject="Hey, Walter! Want to do a React Workshop?"
         datetime="11:56 am"
         checked={true}
+      />
+    </ul>
+  ))
+  .add('events', () => (
+    <ul className="message-list">
+      <MailItem
+        from="René Sáenz"
+        subject="Hey, Walter! Want to do a React Workshop?"
+        datetime="11:56 am"
+        checked={true}
+        onClick={action('Mail Clicked!')}
+        onBookmarkClick={action('Bookmark clicked!')}
+        onCheck={action('Checkbox clicked!')}
       />
     </ul>
   ));

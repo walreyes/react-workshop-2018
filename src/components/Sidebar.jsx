@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-const propTypes = {};
+const propTypes = {
+  mailsCount: PropTypes.number
+};
 
-const defaultProps = {};
+const defaultProps = {
+  mailsCount: 0
+};
 
 class Sidebar extends Component {
   render() {
@@ -18,7 +22,7 @@ class Sidebar extends Component {
             <ul>
               <li className="active">
                 <a href="#">
-                  Inbox<span> (43)</span>
+                  Inbox<span> ({this.props.mailsCount})</span>
                 </a>
               </li>
               <li>
@@ -59,43 +63,6 @@ class Sidebar extends Component {
             </ul>
           </div>
           <div className="separator" />
-          <div className="menu-segment">
-            <ul className="chat">
-              <li className="title">
-                Chat <span className="icon">+</span>
-              </li>
-              <li>
-                <a href="#">
-                  <span className="ball green" />Laura Turner
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <span className="ball green" />Kevin Jones
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <span className="ball blue" />John King
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <span className="ball blue" />Jenny Parker
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <span className="ball blue" />Paul Green
-                </a>
-              </li>
-              <li>
-                <a href="#" className="italic-link">
-                  See offline list
-                </a>
-              </li>
-            </ul>
-          </div>
           <div className="bottom-padding" />
         </div>
       </aside>
