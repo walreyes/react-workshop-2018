@@ -2,7 +2,7 @@
   {
     "id": 1,
     "from": "Pedro Ramírez",
-    "subject": "Hello  –  Trip home from Colombo has been arranged, then Jenna will come get me from Stockholm. :)",
+    "subject": "Hello  –  Trip home from Colombo has been arranged  :)",
     "datetime": "11:59 am",
     "read": false,
     "bookmarked": false,
@@ -72,7 +72,7 @@
   {
     "id": 8,
     "from": "Nach",
-    "subject": "Las encontré entre las esquinas, brillaban como diamantes. ",
+    "subject": "Las encontré entre las esquinas, brillaban. ",
     "datetime": "Apr 18",
     "read": true,
     "bookmarked": false,
@@ -82,7 +82,7 @@
   {
     "id": 9,
     "from": "Diego Ojeda",
-    "subject": "Como te digo",
+    "subject": "Almohadas en Vela",
     "datetime": "Feb 15",
     "read": true,
     "bookmarked": false,

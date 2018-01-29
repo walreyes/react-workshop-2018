@@ -8,30 +8,77 @@ import MailMessage from '../components/MailMessage';
 import Sidebar from '../components/Sidebar';
 
 import mailsDB from './MailsDB.json';
+import MailsHandler from './MailsHandler';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       mails: mailsDB,
-      mailOpened: false,
+      isMailOpened: false,
       openedMailId: null
     };
   }
 
-  openMail(mailId) {
-    console.log(`mail clicked: ${mailId}`);
+  toggleMail(mailId) {
+    // If maildId is opened then close and finish
+    if (this.state.openedMailId == mailId) {
+      this.closeMail();
+    } else {
+      // If mailId is not opened then open it.
+      // If new mail id, is not read mark it as read.
+      const newMails = MailsHandler.markMailAsRead(this.state.mails, mailId);
+
+      this.setState({
+        isMailOpened: true,
+        openedMailId: mailId,
+        mails: newMails
+      });
+    }
   }
 
-  checkMail(mailId) {
-    console.log(`mail toggle check: ${mailId}`);
+  closeMail() {
+    this.setState({
+      isMailOpened: false,
+      openedMailId: null
+    });
   }
 
-  bookmarkMail(mailId) {
-    console.log(`mail bookmark: ${mailId}`);
+  toggleMailCheckbox(mailId) {
+    const newMails = MailsHandler.toggleMailChecked(this.state.mails, mailId);
+
+    this.setState({
+      mails: newMails
+    });
+  }
+
+  toggleMailBookmark(mailId) {
+    const newMails = MailsHandler.toggleMailBookmark(this.state.mails, mailId);
+
+    this.setState({
+      mails: newMails
+    });
+  }
+
+  getOpenedMail() {
+    if (this.state.isMailOpened) {
+      let mail = MailsHandler.findMailById(
+        this.state.mails,
+        this.state.openedMailId
+      );
+      return (
+        <MailContent
+          opened={true}
+          onBackClicked={this.closeMail.bind(this)}
+          {...mail}
+        />
+      );
+    }
   }
 
   render() {
+    const openedMail = this.getOpenedMail();
+
     return (
       <div>
         <Sidebar />
@@ -57,9 +104,9 @@ class App extends Component {
             <div className="nano-content">
               <MailsList
                 mails={this.state.mails}
-                openMail={this.openMail}
-                bookmarkMail={this.bookmarkMail}
-                checkMail={this.checkMail}
+                toggleMail={this.toggleMail.bind(this)}
+                toggleMailBookmark={this.toggleMailBookmark.bind(this)}
+                toggleMailCheckbox={this.toggleMailCheckbox.bind(this)}
               />
 
               <a href="#" className="load-more-link">
@@ -68,7 +115,8 @@ class App extends Component {
             </div>
           </div>
         </main>
-        <MailContent />
+
+        {openedMail}
       </div>
     );
   }

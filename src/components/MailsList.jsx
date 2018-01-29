@@ -4,16 +4,16 @@ import MailItem from './MailItem';
 
 const propTypes = {
   mails: PropTypes.array.optional,
-  openMail: PropTypes.func,
-  bookmarkMail: PropTypes.func,
-  checkMail: PropTypes.func
+  toggleMail: PropTypes.func,
+  toggleMailBookmark: PropTypes.func,
+  toggleMailCheckbox: PropTypes.func
 };
 
 const defaultProps = {
   mails: [],
-  openMail: () => {},
-  bookmarkMail: () => {},
-  checkMail: () => {}
+  toggleMail: () => {},
+  toggleMailBookmark: () => {},
+  toggleMailCheckbox: () => {}
 };
 
 class MailsList extends Component {
@@ -25,9 +25,9 @@ class MailsList extends Component {
             <MailItem
               {...mail}
               key={i}
-              onCheck={this.props.checkMail}
-              onBookmarkClick={this.props.bookmarkMail}
-              onClick={this.props.openMail}
+              onCheck={this.props.toggleMailCheckbox}
+              onBookmarkClick={this.props.toggleMailBookmark}
+              onClick={this.props.toggleMail}
             />
           );
         })}
