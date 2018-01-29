@@ -529,7 +529,7 @@ a:hover {
   bottom: 0;
   width: 40%;
   z-index: 5;
-  transform: translateX(200%);
+  transform: translateX(0);
   transition-duration: .5s;
   padding: 50px 30px;
   background: #EFEFEF;
@@ -545,6 +545,7 @@ a:hover {
   display: block;
   float: none;
   margin-bottom: 20px;
+  font-size: 30px;  
 }
 #message .header .page-title .icon {
   margin-top: 4px;
@@ -818,4 +819,8 @@ a:hover {
 
 .yellow {
   color: goldenrod;
+}
+
+.closed {
+  transform: translateX(200%) !important;
 }

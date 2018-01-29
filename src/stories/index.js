@@ -103,8 +103,6 @@ storiesOf('Mail Item', module)
     </ul>
   ));
 
-storiesOf('Mail Content', module).add('simple', () => <MailContent />);
-
 const message = `
 <h2> Hey, Rene! </h2>
 <br/>
@@ -120,6 +118,20 @@ const receivedMessage = `
 <p>| Creature firmament so give replenish The saw man creeping, man said forth from that. Fruitful multiply lights air. Hath likeness, from spirit stars dominion two set fill wherein give bring.</p>
 <p>| Gathering is. Lesser Set fruit subdue blessed let. Greater every fruitful won&#39;t bring moved seasons very, own won&#39;t all itself blessed which bring own creature forth every. Called sixth light.</p>
 `;
+
+storiesOf('Mail Content', module)
+  .add('opened', () => (
+    <MailContent
+      from="René Saénz"
+      opened={true}
+      mailContent={receivedMessage}
+      datetime="March 6, 2014, 20:08 pm"
+      onBackClicked={action('Back Clicked')}
+      subject="Hey, Walter! Want to do a React Workshop?"
+    />
+  ))
+  .add('closed', () => <MailContent />);
+
 storiesOf('Mail Message', module)
   .add('sent', () => (
     <ul className="message-container">
