@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 
 const propTypes = {
   placeholer: PropTypes.string,
-  onKeyPressed: PropTypes.func
+  onKeyPressed: PropTypes.func,
+  searchValue: PropTypes.string
 };
 
 const defaultProps = {

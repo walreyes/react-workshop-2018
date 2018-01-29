@@ -55,7 +55,7 @@ class MailItem extends Component {
           <div className="checkbox-wrapper" onClick={this.onCheck.bind(this)}>
             <input type="checkbox" checked={this.props.checked} />
 
-            <label for="chk1" className="toggle" />
+            <label htmlFor="chk1" className="toggle" />
           </div>
           <p className="title">{this.props.from}</p>
           <span

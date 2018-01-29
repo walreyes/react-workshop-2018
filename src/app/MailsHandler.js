@@ -33,6 +33,14 @@ class MailsHandler {
     const newMails = MailsHandler.replaceMail(mails, mail);
     return newMails;
   }
+
+  static searchMails(mails, searchCriteria) {
+    const pattern = new RegExp(searchCriteria, 'i');
+
+    return mails.filter(mail => {
+      return pattern.test(mail.from) || pattern.test(mail.subject);
+    });
+  }
 }
 
 export default MailsHandler;

@@ -16,7 +16,8 @@ class App extends Component {
     this.state = {
       mails: mailsDB,
       isMailOpened: false,
-      openedMailId: null
+      openedMailId: null,
+      filteredMails: mailsDB
     };
   }
 
@@ -76,6 +77,21 @@ class App extends Component {
     }
   }
 
+  searchMails(searchCriteria) {
+    const mails = this.state.mails;
+    let filteredMails;
+
+    if (searchCriteria && searchCriteria != '') {
+      filteredMails = MailsHandler.searchMails(mails, searchCriteria);
+    } else {
+      filteredMails = mails;
+    }
+
+    this.setState({
+      filteredMails
+    });
+  }
+
   render() {
     const openedMail = this.getOpenedMail();
 
@@ -85,7 +101,7 @@ class App extends Component {
         <main id="main">
           <div className="overlay" />
           <header className="header">
-            <SearchBox />
+            <SearchBox onKeyPressed={this.searchMails.bind(this)} />
 
             <h1 className="page-title">
               <a className="sidebar-toggle-btn trigger-toggle-sidebar">
@@ -103,7 +119,7 @@ class App extends Component {
           <div id="main-nano-wrapper" className="nano">
             <div className="nano-content">
               <MailsList
-                mails={this.state.mails}
+                mails={this.state.filteredMails}
                 toggleMail={this.toggleMail.bind(this)}
                 toggleMailBookmark={this.toggleMailBookmark.bind(this)}
                 toggleMailCheckbox={this.toggleMailCheckbox.bind(this)}
